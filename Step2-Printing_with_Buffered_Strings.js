@@ -11,7 +11,7 @@ function getAndPrintHTML() {
     host: 'sytantris.github.io',
     path: '/http-examples/step2.html'
   };
-
+  var dataBuffer ="";
   /* Add your code here */
   https.get(requestOptions, function(response) {
 
@@ -21,12 +21,13 @@ function getAndPrintHTML() {
 
     // Call back invoked when a 'data' chunk is received
     response.on('data', function (data) {
-      console.log('Chunk received' + data + '\n');
+      dataBuffer += data;
     });
 
     //Callback invoked when all the data has been received and it is end of stream
 
     response.on('end', function() {
+      console.log(dataBuffer);
       console.log('Response stream complete.');
 
     });
